@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    
     @State private var showPushView = false
     @State private var showPresentView = false
     @State private var showCustomView = false
@@ -15,10 +16,11 @@ struct MainView: View {
     
     var body: some View {
         NavigationContainer {
-            CustomContentView()
+            CustomTransitionView()
         }
-        .pushNavigation(view: PushContentView().eraseToAnyView(), isActive: showPushView)
-        .presentNavigation(view: PresentContentView().eraseToAnyView(), isActive: showPresentView)
-        .customNavigation(view: CustomContentView().eraseToAnyView(), isActive: showCustomView)
+        .pushNavigation(view: PushTransitionView().eraseToAnyView(), isActive: showPushView)
+        .presentNavigation(view: PresentTransitionView().eraseToAnyView(), isActive: showPresentView)
+        .customNavigation(view: CustomTransitionView().eraseToAnyView(), isActive: showCustomView)
     }
+    
 }

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct MainCustomView: View {
+struct CustomMainView: View {
+    
     @State private var showPushView = false
     @EnvironmentObject private var navManager: NavigationManager
     
@@ -23,11 +24,12 @@ struct MainCustomView: View {
             }
             .padding()
         }
-        .pushNavigation(view: PushContentView().eraseToAnyView(), isActive: showPushView)
+        .pushNavigation(view: PushTransitionView().eraseToAnyView(), isActive: showPushView)
     }
+    
 }
 
 #Preview {
-    MainCustomView()
+    CustomMainView()
 }
 

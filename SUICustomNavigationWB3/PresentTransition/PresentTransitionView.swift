@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct PresentTransitionView: View {
+    
+    @State private var showCustomView = false
+    @EnvironmentObject private var navManager: NavigationManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.orange
+                .ignoresSafeArea()
+            VStack {
+                NavigationButton(title: "Custom", action: { showCustomView.toggle() })
+                if !navManager.screens.isEmpty {
+                    BackToRootView(action: { navManager.returnToRoot() })
+                }
+            }
+            .padding()
+        }
+        .customNavigation(view: CustomTransitionView().eraseToAnyView(), isActive: showCustomView)
     }
-}
-
-#Preview {
-    PresentTransitionView()
+    
 }

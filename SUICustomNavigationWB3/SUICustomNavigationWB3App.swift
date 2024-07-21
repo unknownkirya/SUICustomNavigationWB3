@@ -11,7 +11,7 @@ import SwiftUI
 struct SUICustomNavigationWB3App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView().environmentObject(NavigationManager())
         }
     }
 }

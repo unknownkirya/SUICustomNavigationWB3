@@ -10,6 +10,7 @@ import SwiftUI
 struct NavigationContainer<Content: View>: View {
     
     @EnvironmentObject private var navManager: NavigationManager
+    
     let content: Content
     
     init(@ViewBuilder content: @escaping () -> Content) {

@@ -16,6 +16,7 @@ enum TransitionType {
 struct NavigationModifier: ViewModifier {
     
     @EnvironmentObject private var navManager: NavigationManager
+    
     let view: AnyView
     let isActive: Bool
     let transitionType: TransitionType

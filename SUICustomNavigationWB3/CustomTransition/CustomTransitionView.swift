@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct CustomTransitionView: View {
+    
+    @State private var showPushView = false
+    @EnvironmentObject private var navManager: NavigationManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.red
+                .ignoresSafeArea()
+            VStack {
+                NavigationButton(title: "Push", action: { showPushView.toggle() })
+                if !navManager.screens.isEmpty {
+                    BackToRootView(action: { navManager.returnToRoot() })
+                }
+            }
+            .padding()
+        }
+        .pushNavigation(view: PushTransitionView().eraseToAnyView(), isActive: showPushView)
     }
-}
-
-#Preview {
-    CustomTransitionView()
+    
 }

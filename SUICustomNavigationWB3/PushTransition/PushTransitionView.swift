@@ -8,9 +8,25 @@
 import SwiftUI
 
 struct PushTransitionView: View {
+    
+    @State private var showPresentView = false
+    @EnvironmentObject private var navManager: NavigationManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.purple
+                .ignoresSafeArea()
+            VStack {
+                NavigationButton(title: "Present", action: { showPresentView.toggle() })
+                if !navManager.screens.isEmpty {
+                    BackToRootView(action: { navManager.returnToRoot() })
+                }
+            }
+            .padding()
+        }
+        .presentNavigation(view: PresentTransitionView().eraseToAnyView(), isActive: showPresentView)
     }
+    
 }
 
 #Preview {
